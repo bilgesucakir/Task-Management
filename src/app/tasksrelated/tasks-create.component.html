@@ -1,0 +1,76 @@
+<h2 class="title-text">New Task</h2>
+<mat-card>
+  <form (submit)="onSaveTask(taskForm)" #taskForm="ngForm">
+
+    <mat-form-field>
+      <input class="c1"matInput type="text" [ngModel]="task?.name" placeholder="Title"
+      name="nameTask" required maxlength="36" #localTitle="ngModel">
+      <mat-error *ngIf="localTitle.invalid">Please enter a task title.</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <textarea class="c2" matInput rows="2" [ngModel]="task?.content" placeholder="Content"
+      name="contentTask" required maxlength="256" #localContent="ngModel"></textarea>
+      <mat-error *ngIf="localContent.invalid">Please enter a task content.</mat-error>
+    </mat-form-field>
+
+    <br><br>
+    <table width="100%">
+      <tr width="100%">
+        <td align="left">
+          <mat-radio-group class="radiobuttons" matInput [ngModel]="task?.status" name="statusTask" required #localStatus="ngModel">
+            <mat-radio-button value="To do">To do&nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
+            <mat-radio-button value="In progress">In progress&nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
+            <mat-radio-button value="Finished">Finished&nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
+            <mat-radio-button value="Cancelled">Cancelled&nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
+            <mat-error *ngIf="localStatus.invalid"><p class="errortext">Please select a status.</p></mat-error>
+          </mat-radio-group>
+
+        </td>
+      </tr>
+    </table>
+
+    <br>
+    <table width="100%">
+        <td class="startdate">
+          <mat-form-field appearance="fill" >
+            <mat-label class="s-e-label">Start date</mat-label>
+            <input matInput [matDatepicker]="pickerstart"  name="startDateTask" required [ngModel]="task?.startdate" #localStartDate="ngModel">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="pickerstart"></mat-datepicker-toggle>
+            <mat-datepicker #pickerstart></mat-datepicker>
+            <mat-error *ngIf="localStartDate.invalid"><p class="errortext">Please select a start date.</p></mat-error>
+          </mat-form-field>
+        </td>
+        <td class="enddate" >
+          <mat-form-field appearance="fill" >
+            <mat-label class="s-e-label">End date</mat-label>
+            <input matInput [matDatepicker]="pickerend"  name="endDateTask" required [ngModel]="task?.enddate" #localEndDate="ngModel">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="pickerend"></mat-datepicker-toggle>
+            <mat-datepicker #pickerend></mat-datepicker>
+            <mat-error *ngIf="localEndDate.invalid"><p class="errortext">Please select an end date.</p></mat-error>
+          </mat-form-field>
+        </td>
+    </table>
+    <mat-error *ngIf="!valid">
+      <table width="100%">
+        <tr width="100%">
+          <td align="center">
+            <p class="errortext">&nbsp;Please select the end date bigger than or equal to the start date.</p>
+          </td>
+        </tr>
+      </table>
+    </mat-error>
+
+    <br><br>
+    <table width="100%">
+      <tr width="100%">
+        <td align="right">
+          <button mat-raised-button color="accent" type="submit" class="buttonsave">Save Task</button>
+        </td>
+      </tr>
+    </table>
+
+  </form>
+</mat-card>

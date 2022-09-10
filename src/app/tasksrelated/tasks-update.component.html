@@ -1,0 +1,45 @@
+<h2 class="title-text">Edit Task</h2>
+<mat-card>
+  <form (submit)="onSaveTask(taskForm)" #taskForm="ngForm">
+
+    <mat-form-field>
+      <input class="c1"matInput type="text" [ngModel]="task?.name" placeholder="Title"
+      name="nameTask" required maxlength="36" #localTitle="ngModel">
+      <mat-error *ngIf="localTitle.invalid">Please enter a task title.</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <textarea class="c2" matInput rows="2" [ngModel]="task?.content" placeholder="Content"
+      name="contentTask" required maxlength="256" #localContent="ngModel"></textarea>
+      <mat-error *ngIf="localContent.invalid">Please enter a task content.</mat-error>
+    </mat-form-field>
+
+    <br><br>
+    <table width="100%">
+      <tr width="100%">
+        <td class="radiobuttonstd" align="left">
+          <mat-radio-group class="radiobuttons" matInput [ngModel]="task?.status" name="statusTask" required #localStatus="ngModel">
+            <mat-radio-button value="To do">To do&nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
+            <mat-radio-button value="In progress">In progress&nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
+            <mat-radio-button value="Finished">Finished&nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
+            <mat-radio-button value="Cancelled">Cancelled&nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
+            <mat-error *ngIf="localStatus.invalid"><p class="errortext">Please select a status.</p></mat-error>
+          </mat-radio-group>
+
+        </td>
+      </tr>
+    </table>
+
+    <!--startdate and enddate are remowed for now-->
+
+    <br><br>
+    <table width="100%">
+      <tr width="100%">
+        <td align="right">
+          <button mat-raised-button color="accent" type="submit" class="buttonsave">Update Task</button>
+        </td>
+      </tr>
+    </table>
+
+  </form>
+</mat-card>

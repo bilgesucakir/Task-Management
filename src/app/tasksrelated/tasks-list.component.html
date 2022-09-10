@@ -1,0 +1,63 @@
+<div *ngIf="!isChecked"><h2 class="created-title" *ngIf="tasks.length > 0">All Tasks</h2></div>
+<div *ngIf="isChecked"><div *ngIf="(tasks.length > 0)"><h2 class="created-title" *ngIf="(tasks | inprogresspipe)">Continuing Tasks</h2></div></div>
+<div class="space" *ngIf="tasks.length > 0">
+  <span><mat-icon matTooltip="Tasks are sorted by ascending end dates." class="icon" matTooltipPosition="above">info</mat-icon></span>
+  <span><section><mat-checkbox class="checkbox" [(ngModel)]="isChecked" labelPosition="before" color="accent">Display in progress tasks only</mat-checkbox></section></span>
+</div>
+
+<div *ngIf="!isChecked">
+<mat-accordion multi="true" *ngIf="tasks.length > 0">
+  <mat-expansion-panel *ngFor="let task of (tasks | sortpipe); index as i;">
+    <mat-expansion-panel-header>
+      <table width="100%">
+        <tr width="100%">
+          <span class="left"><td><!--#{{i+1}}-->{{task.name}}&nbsp;&nbsp;</td></span>
+          <span class="space-panel"></span>
+          <span class="right"><td *ngIf="task.status == 'To do'"><div class="statust">&nbsp;&nbsp;{{task.status}}&nbsp;&nbsp;</div></td></span>
+          <span class="right"><td *ngIf="task.status == 'In progress'"><div class="statusi">&nbsp;&nbsp;{{task.status}}&nbsp;&nbsp;</div></td></span>
+          <span class="right"><td *ngIf="task.status == 'Finished'"><div class="statusf">&nbsp;&nbsp;{{task.status}}&nbsp;&nbsp;</div></td></span>
+          <span class="right"><td *ngIf="task.status == 'Cancelled'"><div class="statusc">&nbsp;&nbsp;{{task.status}}&nbsp;&nbsp;</div></td></span>
+          <span class="right"><td *ngIf="(task.enddate | expiredpipe) && (task.status == 'To do')"><div class="expired-tag">&nbsp;&nbsp;Expired&nbsp;&nbsp;</div></td></span>
+          <span class="right"><td *ngIf="(task.enddate | expiredpipe) && (task.status == 'In progress')"><div class="expired-tag">&nbsp;&nbsp;Expired&nbsp;&nbsp;</div></td></span>
+        </tr>
+      </table>
+    </mat-expansion-panel-header>
+    <div class="date-div"><p class="datedisplay">&nbsp;&nbsp;{{task.startdate | slice:8:10}}/{{task.startdate | slice:5:7}}/{{task.startdate | slice:0:4}} - {{task.enddate | slice:8:10}}/{{task.enddate | slice:5:7}}/{{task.enddate | slice:0:4}}&nbsp;&nbsp;</p></div>
+    <p>&nbsp;{{task.content}}</p>
+
+    <mat-action-row>
+      <a [routerLink]="['/edit', task.id]" mat-stroked-button class="b1" >EDIT</a>
+      <button mat-stroked-button class="b3" (click)="onDelete(task.id)">DELETE</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+</div>
+
+<div *ngIf="isChecked">
+<mat-accordion multi="true" *ngIf="tasks.length > 0">
+  <mat-expansion-panel *ngFor="let task of (tasks | sortandinprogresspipe); index as j;">
+    <mat-expansion-panel-header>
+      <table width="100%">
+        <tr width="100%">
+          <span class="left"><td><!--#{{j+1}}&nbsp;&nbsp;-->{{task.name}}&nbsp;&nbsp;</td></span>
+          <span class="space-panel"></span>
+          <span class="right"><td><div class="statusi">&nbsp;&nbsp;{{task.status}}&nbsp;&nbsp;</div></td></span>
+          <span class="right"><td *ngIf="(task.enddate | expiredpipe)"><div class="expired-tag">&nbsp;&nbsp;Expired&nbsp;&nbsp;</div></td></span>
+        </tr>
+      </table>
+    </mat-expansion-panel-header>
+    <div class="date-div"><p class="datedisplay">&nbsp;&nbsp;{{task.startdate | slice:8:10}}/{{task.startdate | slice:5:7}}/{{task.startdate | slice:0:4}} - {{task.enddate | slice:8:10}}/{{task.enddate | slice:5:7}}/{{task.enddate | slice:0:4}}&nbsp;&nbsp;</p></div>
+    <p>&nbsp;{{task.content}}</p>
+
+    <mat-action-row>
+      <a [routerLink]="['/edit', task.id]" mat-stroked-button class="b1" >EDIT</a>
+      <button mat-stroked-button class="b3" (click)="onDelete(task.id)">DELETE</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<br>
+</div>
+
+<p class="info-text mat-body-1" *ngIf="tasks.length == 0">No tasks added yet.</p>
+<p class="info-text-exists mat-body-1" *ngIf="tasks.length > 0 && isChecked">Total number of continuing tasks: {{(tasks | sortandinprogresspipe).length}}</p>
+<p class="info-text-exists mat-body-1" *ngIf="tasks.length > 0">Total number of tasks: {{tasks.length}}</p>

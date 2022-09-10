@@ -1,0 +1,110 @@
+:host {
+  display: block;
+  margin-top: 16px;
+  color: white;
+}
+
+.info-text {
+  text-align: center;
+  color: black;
+}
+
+.info-text-exists {
+  text-align: center;
+  color: black;
+}
+
+.mat-expansion-panel{
+  margin-bottom: 8px;
+}
+
+.created-title {
+  text-align: center;
+  color:black;
+  height: fit-content;
+}
+
+.b1{
+  color: rgb(42, 156, 250);
+}
+
+.b3{
+  color: rgb(255, 50, 50);
+}
+
+.statust{
+  border-radius: 25px;
+  width: max-content;
+  background-color: rgb(42, 156, 250);
+  color: black;
+  margin-right: 20px;
+}
+
+.statusi{
+  border-radius: 25px;
+  width: max-content;
+  background-color: rgb(253, 229, 94);
+  color: black;
+  margin-right: 20px;
+}
+
+.statusf{
+  border-radius: 25px;
+  width: max-content;
+  background-color: rgb(105, 240, 174);
+  color: black;
+  margin-right: 20px;
+}
+
+.statusc{
+  border-radius: 25px;
+  width: max-content;
+  background-color:rgb(255, 50, 50);
+  color: black;
+  margin-right: 20px;
+}
+
+.datedisplay{
+  font-size: x-small;
+  border-radius: 25px;
+  width: max-content;
+  background-color: rgb(190, 190, 190);
+  color: black;
+}
+
+.expired-tag{
+  border-radius: 25px;
+  width: max-content;
+  background-color: orange;
+  color: black;
+}
+
+.icon{
+  color:rgb(57, 57, 57);
+  transform: scale(0.8);
+}
+
+.space{
+  justify-content: space-between;
+  display: flex;
+}
+
+.space-panel{
+  flex: 1 1 auto;
+}
+
+.checkbox{
+  color: black;
+}
+
+.right{
+  float: right;
+}
+
+.left{
+  float: left;
+}
+
+.date-div{
+  margin-left: 2px;
+}

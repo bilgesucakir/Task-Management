@@ -1,0 +1,21 @@
+mat-card {
+  margin-top: 8px;
+}
+
+mat-form-field,
+text-area {
+  width: 100%;
+}
+
+.title-text {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.errortext{
+  font-size: 11px;
+}
+
+.radiobuttonstd{
+  flex: 1 1 auto;
+}
