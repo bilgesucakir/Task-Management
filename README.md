@@ -1,7 +1,7 @@
 ## Task-Management
 
 Task management web application with Angular, Node.js and MongoDB
-<br>This is a summer internship case study to learn and gain experience on Angular, Node.js and web development in general. It is completed but there may be some new impovements in time.
+<br>This is a summer internship case study to learn and gain experience on Angular, Node.js and web development in general. It is completed but there may be some new impovements later on.
 
 <br>This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
 
