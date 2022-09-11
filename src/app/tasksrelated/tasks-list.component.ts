@@ -53,6 +53,8 @@ export class TasksListComponent implements OnInit, OnDestroy {
 }
 
 //pipelines
+//This pipeline determines if the task is overdue or not. It compares today's date and task's end date, if the end date is smaller than today's date, then task is expired.
+//const now is created as new Date() so it gets today's date in each pipeline call. So it is alwas accurate at the time of its use.
 @Pipe({ name: 'expiredpipe' })
 export class ExpiredPipe implements PipeTransform {
   transform(endDatePipe: Date) {
@@ -73,7 +75,8 @@ export class ExpiredPipe implements PipeTransform {
     return toReturn;
   }
 }
-@Pipe({ name: 'inprogresspipe' }) //checks if given array has any task that its status is in progress or not
+//checks if given array has any task that its status is in progress or not. It is used in related html page in the frontend.
+@Pipe({ name: 'inprogresspipe' }) 
 export class InProgressPipe implements PipeTransform {
   transform(tasksArray: Array<Task>) {
 
@@ -86,6 +89,7 @@ export class InProgressPipe implements PipeTransform {
     return false;
   }
 }
+//this pipeline sorts the tasks array according to end dates. Closest end dated task will be on the top of the list so upcoming tasks can be realized easier.
 @Pipe({ name: 'sortpipe' })
 export class SortPipe implements PipeTransform {
   transform(tasksArray: Array<Task>) {
@@ -94,6 +98,8 @@ export class SortPipe implements PipeTransform {
     return tasksArray;
   }
 }
+//this pipeline also sorts the array like sortpipe but it returns the array only with elements which of their statuses are in progress. 
+//.filter method is used and a function called in it.
 @Pipe({ name: 'sortandinprogresspipe' })
 export class SortAndInProgressPipe implements PipeTransform {
   transform(tasksArray: Array<Task>) {
