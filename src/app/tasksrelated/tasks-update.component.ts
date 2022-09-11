@@ -54,7 +54,9 @@ export class TasksUpdateComponent implements OnInit{
       });
     }
     else{
-      console.log("somehting went wrong."); //in this component mode should never be equal to create, currently it is connected to tasks-create.
+      console.log("somehting went wrong.");
+      //in this component mode should never be equal to create, currently it is connected to tasks-create. 
+      //This case is almost impossible but it is kept for just to be sure
     }
 
     form.resetForm();
