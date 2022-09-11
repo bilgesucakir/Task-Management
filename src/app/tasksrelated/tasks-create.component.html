@@ -53,6 +53,9 @@
           </mat-form-field>
         </td>
     </table>
+    <!--this error message is displayed when the given end date is smaller than the given start date which is not logical. Since seperate datepickers are used to
+    get the start date and the end date, there is no default validating mechanism to check this. 'valid' aprameter comes from this components ts file. When this 
+    error is shown, form will not be accepted until the range is fixed.-->
     <mat-error *ngIf="!valid">
       <table width="100%">
         <tr width="100%">
