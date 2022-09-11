@@ -3,7 +3,7 @@
 <div class="space" *ngIf="tasks.length > 0">
   <span><mat-icon matTooltip="Tasks are sorted by ascending end dates." class="icon" matTooltipPosition="above">info</mat-icon></span>
   <span><section><mat-checkbox class="checkbox" [(ngModel)]="isChecked" labelPosition="before" color="accent">Display in progress tasks only</mat-checkbox></section></span>
-</div>
+</div><!--if the checkbox is checked, then only in progress tasks are displayed, if it is not checked, then all of the tasks are displayed regardless of their status-->
 
 <div *ngIf="!isChecked">
 <mat-accordion multi="true" *ngIf="tasks.length > 0">
@@ -20,6 +20,8 @@
           <span class="right"><td *ngIf="(task.enddate | expiredpipe) && (task.status == 'To do')"><div class="expired-tag">&nbsp;&nbsp;Expired&nbsp;&nbsp;</div></td></span>
           <span class="right"><td *ngIf="(task.enddate | expiredpipe) && (task.status == 'In progress')"><div class="expired-tag">&nbsp;&nbsp;Expired&nbsp;&nbsp;</div></td></span>
         </tr>
+        <!--if the end date of a task is smaller than the current day, then a to da task or an in progress task will have a tag indicating that the task's duration is expired-->
+        <!--if the task is finished or cancelled, it doesnt matter if it is overdue or not since it wont be continued-->
       </table>
     </mat-expansion-panel-header>
     <div class="date-div"><p class="datedisplay">&nbsp;&nbsp;{{task.startdate | slice:8:10}}/{{task.startdate | slice:5:7}}/{{task.startdate | slice:0:4}} - {{task.enddate | slice:8:10}}/{{task.enddate | slice:5:7}}/{{task.enddate | slice:0:4}}&nbsp;&nbsp;</p></div>
