@@ -41,7 +41,7 @@ export class TasksCreateComponent implements OnInit{
 
   onSaveTask(form: NgForm){
 
-    this.valid = true;
+    this.valid = true; //it is set to true to avoid confusion in each form saving attempt
     if(form.invalid){
       return;
     }
@@ -50,13 +50,15 @@ export class TasksCreateComponent implements OnInit{
       //check validity of the range (start cannot be bigger than end)
       const start = new Date(form.value.startDateTask);
       const end = new Date(form.value.endDateTask);
-      if(start.getDate() != end.getDate() || start.getMonth() != end.getMonth() || start.getFullYear() != end.getFullYear()){
+      if(start.getDate() != end.getDate() || start.getMonth() != end.getMonth() || start.getFullYear() != end.getFullYear()){ 
+        //they might have the same day but different hour and minute info, they are considered equal since datepicker does not 
+        //collect hour or minute info and having the same day is valid
         if(start > end){
-          this.valid = false;
+          this.valid = false;//this is the case where end date is smaller than the start date
         }
       }
 
-      if(this.valid){
+      if(this.valid){ //after the validity check in the upper part, if it is valid then form can be saved now
         console.log("valid");
         this.tasksService.addTask(form.value.nameTask, form.value.contentTask, form.value.statusTask, new Date(form.value.startDateTask), new Date(form.value.endDateTask));
         this.popupsService.alert('Your task is created and saved successfully.', {
