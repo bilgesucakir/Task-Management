@@ -12,3 +12,4 @@ taskSchema = mongoose.Schema({
 module.exports = mongoose.model('Task', taskSchema); //collection name = tasks
 //if mongoose.model('Name', ...)  then the collection name in the database is 'name'
 //so after connecting to mongosh, entries are searched while in that database as: db.tasks.find()
+//you can find related info about mongosh in your related mongodb atlas cluster page
