@@ -7,7 +7,7 @@ Functionalities:
 <ul>
   <li>Add tasks
     <ul>
-      <li>Add task names</li>
+      <li>Add task name</li>
       <li>Add task content</li>
       <li>Add task status</li>
       <li>Add task start date</li>
@@ -17,7 +17,7 @@ Functionalities:
   <li>Delete tasks</li>
   <li>Update tasks
     <ul>
-      <li>Update task names</li>
+      <li>Update task name</li>
       <li>Update task content</li>
       <li>Update task status</li>
     </ul>
