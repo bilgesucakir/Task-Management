@@ -35,6 +35,8 @@ Functionalities:
   </li>
 </ul>
 
+(use 'npm run start:server' to run the Node.js server in a seperate terminal other than 'ng serve' terminal)
+
 <br>This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
 
 ## Development server
